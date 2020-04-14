@@ -12,6 +12,7 @@
     {
         private readonly SendGridClient client;
 
+        // TODO: get api key from sendgrid.com
         public SendGridEmailSender(string apiKey)
         {
             this.client = new SendGridClient(apiKey);
