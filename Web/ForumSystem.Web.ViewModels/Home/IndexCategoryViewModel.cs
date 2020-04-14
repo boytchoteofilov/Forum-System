@@ -1,6 +1,9 @@
 ﻿namespace ForumSystem.Web.ViewModels.Home
 {
-    public class IndexCategoryViewModel
+    using ForumSystem.Data.Models;
+    using ForumSystem.Services.Mapping;
+
+    public class IndexCategoryViewModel : IMapFrom<Category>
     {
         public string Name { get; set; }
 
@@ -10,6 +13,8 @@
 
         public string ImageUrl { get; set; }
 
-        public string Url => $"/f/{Name.Replace(' ', '-')}";
+        public int PostsCount { get; set; }
+
+        public string Url => $"/f/{this.Name.Replace(' ', '-')}";
     }
 }
