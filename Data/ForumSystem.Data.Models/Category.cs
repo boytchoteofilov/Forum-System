@@ -1,7 +1,8 @@
 ﻿namespace ForumSystem.Data.Models
 {
-    using ForumSystem.Data.Common.Models;
     using System.Collections.Generic;
+
+    using ForumSystem.Data.Common.Models;
 
     public class Category : BaseDeletableModel<int>
     {
