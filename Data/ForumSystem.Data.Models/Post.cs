@@ -1,9 +1,10 @@
 ﻿namespace ForumSystem.Data.Models
 {
-    using ForumSystem.Data.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    using ForumSystem.Data.Common.Models;
 
     public class Post : BaseDeletableModel<int>
     {

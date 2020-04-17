@@ -51,7 +51,7 @@
                 options =>
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                    });
+                    }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
             services.AddSingleton(this.configuration);
@@ -65,6 +65,7 @@
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender("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"));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IPostsService, PostsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
