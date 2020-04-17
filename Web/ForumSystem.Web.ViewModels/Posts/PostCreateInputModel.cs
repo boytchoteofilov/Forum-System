@@ -16,5 +16,7 @@
         [Range(1, int.MaxValue)]
         [Display(Name ="Category")]
         public int CategoryId { get; set; }
+
+        public IEnumerable<CategoryDropdownViewModel> Categories { get; set; }
     }
 }

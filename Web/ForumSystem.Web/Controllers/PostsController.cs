@@ -15,11 +15,13 @@
 
     public class PostsController : Controller
     {
+        private readonly ICategoriesService categoriesService;
         private readonly IPostsService postsService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public PostsController(IPostsService postsService, UserManager<ApplicationUser> userManager)
+        public PostsController(ICategoriesService categoriesService, IPostsService postsService, UserManager<ApplicationUser> userManager)
         {
+            this.categoriesService = categoriesService;
             this.postsService = postsService;
             this.userManager = userManager;
         }
@@ -34,7 +36,12 @@
         [Authorize]
         public IActionResult Create()
         {
-            return this.View();
+            var categories = this.categoriesService.GetAll<CategoryDropdownViewModel>();
+            var viemModel = new PostCreateInputModel();
+
+            // populate the categories for the dropdown menu
+            viemModel.Categories = categories;
+            return this.View(viemModel);
         }
 
         [HttpPost]
