@@ -28,8 +28,9 @@
 
         public IActionResult ById(int id)
         {
-            // TODO:
-            return this.View();
+            var viewModel = this.postsService.GetById<PostViewModel>(id);
+
+            return this.View(viewModel);
         }
 
         [HttpGet]

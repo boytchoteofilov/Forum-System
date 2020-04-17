@@ -1,0 +1,10 @@
+﻿@model ForumSystem.Web.ViewModels.Posts.PostViewModel
+@{ 
+    this.ViewData["Title"] = Model.Title;
+}
+    <div>
+        <h1>@Model.Title</h1>
+        <div>@Html.Raw(Model.SanitizedContent)</div>
+        <div>@Model.UserUserName</div>
+        <div>@Model.CreatedOn</div>
+    </div>   
