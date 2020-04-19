@@ -8,6 +8,7 @@
     using ForumSystem.Data.Common.Repositories;
     using ForumSystem.Data.Models;
     using ForumSystem.Services.Data;
+    using ForumSystem.Services.Mapping;
     using ForumSystem.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -42,6 +43,10 @@
 
             // populate the categories for the dropdown menu
             viemModel.Categories = categories;
+
+            // Using automapper for creating object from an input model.
+            // Must add IMapTo<Post> in the PostViewModel.
+            // AutoMapperConfig.MapperInstance.Map<Post>(new PostViewModel());
             return this.View(viemModel);
         }
 

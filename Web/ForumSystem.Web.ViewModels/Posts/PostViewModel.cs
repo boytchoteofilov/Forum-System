@@ -8,7 +8,7 @@
     using ForumSystem.Services.Mapping;
     using Ganss.XSS;
 
-    public class PostViewModel : IMapFrom<Post>
+    public class PostViewModel : IMapFrom<Post>// , IMapTo<Post>
     {
         public int Id { get; set; }
 
