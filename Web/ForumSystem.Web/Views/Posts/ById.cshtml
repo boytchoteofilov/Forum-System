@@ -2,12 +2,6 @@
 @{
     this.ViewData["Title"] = Model.Title;
 }
-<div>
-    <h1></h1>
-    <div></div>
-    <div></div>
-    <div></div>
-</div>
 
 <div class="container-fluid mt-100">
     <div class="row">
@@ -24,8 +18,22 @@
                             <div>Member since <strong>01/1/2019</strong></div>
                             <div><strong>134</strong> posts</div>
                             <div>Created on:<strong>@Model.CreatedOn</strong></div>
-                            <div><i class="fa fa-thumbs-up"></i> posts</div>
-                            <div><i class="fa fa-thumbs-down"></i> posts</div>
+
+                            <form id="votesForm" method="post"></form>
+                            <div>
+                                <a href="#" onclick="sendVote(@Model.Id, true)">
+                                    <i class="fa fa-thumbs-up"></i>
+                                </a>
+
+                            </div>
+
+                            <div id="votesCount">@Model.VotesCount</div>
+
+                            <div>
+                                <a href="#" onclick="sendVote(@Model.Id, false)">
+                                    <i class="fa fa-thumbs-down"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,3 +59,25 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+
+    <script>
+       function sendVote(postId, isUpVote) {
+           var token = $("#votesForm input[name=__RequestVerificationToken]").val();
+           console.log(token);
+            var json = { postId: postId, isUpVote: isUpVote };
+            $.ajax({
+                url: "/api/votes",
+                type: "POST",
+                data: JSON.stringify(json),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: { 'X-CSRF-TOKEN': token },
+                success: function (data) {
+                    $("#votesCount").html(data.votesCount);
+                }
+            });
+        }
+    </script>
+}

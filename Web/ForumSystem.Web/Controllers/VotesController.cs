@@ -34,10 +34,10 @@
         {
             var userId = this.userManager.GetUserId(this.User);
             await this.votesService.VoteAsync(input.PostId, userId, input.IsUpVote);
-            var votes = this.votesService.GetVotes(input.PostId);
-            var returnModel = new VoteResponseModel { VotesCount = votes };
 
-            return returnModel;
+            var votes = this.votesService.GetVotes(input.PostId);
+
+            return new VoteResponseModel { VotesCount = votes };
         }
 
         // Another way to get back the number of votes but if we need to return other data than int
