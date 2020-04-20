@@ -1,8 +1,5 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using ForumSystem.Data.Models;
@@ -41,7 +38,7 @@
         }
 
         // Another way to get back the number of votes but if we need to return other data than int
-        // we have to add the complex object later so its better to add a complex object or a model at an 
+        // we have to add the complex object later so its better to add a complex object or a model at an
         // early stage, then we can add properties easily.
         // public async Task<ActionResult<int>> Post(VoteInputModel input)
         // {
@@ -50,7 +47,5 @@
         //    var votes = this.votesService.GetVotes(input.PostId);
         //    return votes;
         // }
-
-
     }
 }

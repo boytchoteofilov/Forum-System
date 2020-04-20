@@ -1,9 +1,7 @@
 ﻿namespace ForumSystem.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     using ForumSystem.Data.Common.Repositories;
     using ForumSystem.Data.Models;

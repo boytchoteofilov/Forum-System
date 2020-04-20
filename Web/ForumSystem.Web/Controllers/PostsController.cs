@@ -1,14 +1,9 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using ForumSystem.Data.Common.Repositories;
     using ForumSystem.Data.Models;
     using ForumSystem.Services.Data;
-    using ForumSystem.Services.Mapping;
     using ForumSystem.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;

@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace ForumSystem.Data.Migrations
+﻿namespace ForumSystem.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddVotes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +26,7 @@ namespace ForumSystem.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     PostId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: false),
-                    Type = table.Column<int>(nullable: false)
+                    Type = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {

@@ -1,9 +1,5 @@
 ﻿namespace ForumSystem.Data.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     using ForumSystem.Data.Common.Models;
 
     public class Comment : BaseDeletableModel<int>

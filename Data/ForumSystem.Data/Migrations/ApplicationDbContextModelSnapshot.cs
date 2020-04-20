@@ -458,7 +458,7 @@ namespace ForumSystem.Data.Migrations
             modelBuilder.Entity("ForumSystem.Data.Models.Vote", b =>
                 {
                     b.HasOne("ForumSystem.Data.Models.Post", "Post")
-                        .WithMany("Votes")
+                        .WithMany()
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

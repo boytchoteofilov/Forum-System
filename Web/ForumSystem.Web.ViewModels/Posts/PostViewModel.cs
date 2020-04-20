@@ -1,9 +1,8 @@
 ﻿namespace ForumSystem.Web.ViewModels.Posts
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
+
     using AutoMapper;
     using ForumSystem.Data.Models;
     using ForumSystem.Services.Mapping;
@@ -17,7 +16,7 @@
 
         public string Content { get; set; }
 
-        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content );
+        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
         public DateTime CreatedOn { get; set; }
 
