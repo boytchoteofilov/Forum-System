@@ -29,6 +29,13 @@
             return this.View(viewModel);
         }
 
+        public IActionResult ByCategoryId(int categoryId, int postsPerPage, int postsSkiped)
+        {
+            var viewModel = this.postsService.GetPostsByCategoryIdPaged<PostViewModel>(categoryId, postsPerPage, postsSkiped);
+
+            return this.View(viewModel);
+        }
+
         [HttpGet]
         [Authorize]
         public IActionResult Create()

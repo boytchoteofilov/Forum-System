@@ -1,5 +1,6 @@
 ﻿namespace ForumSystem.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -32,12 +33,37 @@
             return post.Id;
         }
 
-        public T GetById<T>(int id)
+        public T GetById<T>(int postId)
         {
-            var post = this.postsRepository.All().Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+            var post = this.postsRepository.All()
+                .Where(x => x.Id == postId)
+                .To<T>()
+                .FirstOrDefault();
 
             return post;
+        }
+
+        public IEnumerable<T> GetPostsByCategoryIdPaged<T>(int categoryId, int postsPerPage, int postsSkiped)
+        {
+            var queryToPosts = this.postsRepository
+                .All()
+                .OrderByDescending(post => post.CreatedOn)
+                .Where(category => category.CategoryId == categoryId)
+                .Skip(postsSkiped)
+                .Take(postsPerPage)
+                .To<T>()
+                .ToList();
+
+            return queryToPosts;
+        }
+
+        public int GetPostsCountByCategory(int categoryId)
+        {
+            var postsCount = this.postsRepository
+                .All()
+                .Where(category => category.Id == categoryId).Count();
+
+            return postsCount;
         }
     }
 }
