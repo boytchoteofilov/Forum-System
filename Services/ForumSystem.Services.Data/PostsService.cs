@@ -61,7 +61,7 @@
         {
             var postsCount = this.postsRepository
                 .All()
-                .Where(category => category.Id == categoryId).Count();
+                .Where(category => category.CategoryId == categoryId).Count();
 
             return postsCount;
         }

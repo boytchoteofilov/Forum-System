@@ -25,6 +25,7 @@
 
             var postsCount = this.postsService.GetPostsCountByCategory(viewModel.Id);
             viewModel.PagesCount = (int)Math.Ceiling((double)postsCount / this.itemsPerPage);
+            viewModel.CurrentPage = page;
             return this.View(viewModel);
         }
     }
