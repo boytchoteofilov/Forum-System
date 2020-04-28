@@ -8,6 +8,13 @@
 
         public virtual Post Post { get; set; }
 
+        /// <summary>
+        /// Gets or sets property showing if the comment has parent comment.
+        /// </summary>
+        public int? ParentId { get; set; }
+
+        public virtual Comment Parent { get; set; }
+
         public string Content { get; set; }
 
         public string UserId { get; set; }

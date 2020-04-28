@@ -34,7 +34,8 @@
 
         public T GetByName<T>(string name)
         {
-            var category = this.categoriesRepository.All().Where(x => x.Name == name)
+            var category = this.categoriesRepository.All()
+                .Where(x => x.Name.Replace(" ", "-") == name.Replace(" ", "-")) // Replace - with blank space in order to have spaced categories.
                 .To<T>().FirstOrDefault();
 
             return category;

@@ -1,11 +1,13 @@
 ﻿namespace ForumSystem.Web.ViewModels.Posts
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
     using ForumSystem.Data.Models;
     using ForumSystem.Services.Mapping;
+    using ForumSystem.Web.ViewModels.Comments;
     using Ganss.XSS;
 
     public class PostViewModel : IMapFrom<Post>, IMapTo<Post>, IHaveCustomMappings
@@ -23,6 +25,8 @@
         public string UserUserName { get; set; }
 
         public int VotesCount { get; set; }
+
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
