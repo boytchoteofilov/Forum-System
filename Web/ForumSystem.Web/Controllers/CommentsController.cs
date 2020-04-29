@@ -24,8 +24,19 @@
         [HttpPost]
         public async Task<IActionResult> Create(CommentCreateInputModel input)
         {
+            // Making sure the 0 value becomes null for the database to accept it.
+            var parentId = input.ParentId == 0 ? null : input.ParentId;
+
+            if (parentId.HasValue)
+            {
+                if (!this.commentsService.IsInPostId(parentId, input.PostId))
+                {
+                    return this.BadRequest();
+                }
+            }
+
             var userId = this.userManager.GetUserId(this.User);
-            await this.commentsService.CreateAsync(input.PostId, input.Content, userId, input.ParentId);
+            await this.commentsService.CreateAsync(input.PostId, input.Content, userId, parentId);
 
             return this.RedirectToAction("ById", "Posts", new { id = input.PostId });
         }

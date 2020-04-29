@@ -8,5 +8,7 @@
     public interface ICommentsService
     {
         Task CreateAsync(int postId, string content, string userId, int? parentId);
+
+        bool IsInPostId(int? commentId, int postId);
     }
 }
