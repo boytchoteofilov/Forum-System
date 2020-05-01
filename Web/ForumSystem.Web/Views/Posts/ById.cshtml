@@ -17,7 +17,10 @@
                         <div class="text-muted small ml-3">
                             <div>Member since <strong>01/1/2019</strong></div>
                             <div><strong>134</strong> posts</div>
-                            <div>Created on:<strong>@Model.CreatedOn</strong></div>
+                            <div>
+                                Created on:
+                                <strong><time datetime="@Model.CreatedOn.ToString("O")"></time></strong>
+                            </div>
 
                             <form id="votesForm" method="post"></form>
                             <div>
@@ -55,7 +58,7 @@
                         <button type="button" class="btn btn-primary" onclick="showAddCommentForm(0)"><i class="ion ion-md-create"></i> Comment </button>
                     </div>
                 </div>
-                <hr />  
+                <hr />
                 @*TODO: ViewModel in ViewModel*@
                 @foreach (var comment in Model.Comments)
                 {
@@ -76,7 +79,7 @@
                                             <div class="text-muted small ml-3">
                                                 <div>Member since <strong>01/1/2019</strong></div>
                                                 <div><strong>134</strong> posts</div>
-                                                <div>Commented on:<strong>@comment.CreatedOn</strong></div>
+                                                <div>Commented on:<time datetime="@comment.CreatedOn.ToString("O")"></time></div>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +118,7 @@
             <textarea name="Content" id="Content" class="form-control"></textarea>
         </div>
         <div>
-            <input type="submit"  value="Add Comment" class="btn btn-primary" />
+            <input type="submit" value="Add Comment" class="btn btn-primary" />
         </div>
     </form>
 </div>

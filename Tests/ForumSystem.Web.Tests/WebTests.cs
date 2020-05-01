@@ -1,10 +1,16 @@
 ﻿namespace ForumSystem.Web.Tests
 {
+    using System;
     using System.Net;
+    using System.Reflection;
     using System.Threading.Tasks;
-
+    using ForumSystem.Data;
+    using ForumSystem.Data.Models;
+    using ForumSystem.Data.Repositories;
+    using ForumSystem.Services.Data;
+    using ForumSystem.Services.Mapping;
     using Microsoft.AspNetCore.Mvc.Testing;
-
+    using Microsoft.EntityFrameworkCore;
     using Xunit;
 
     public class WebTests : IClassFixture<WebApplicationFactory<Startup>>
@@ -14,6 +20,57 @@
         public WebTests(WebApplicationFactory<Startup> server)
         {
             this.server = server;
+
+            // TODO:(TOCHECK) If mapping registration is in the test only, the test runs correctly only
+            // when is rum by itself. If you run all tests it fails.
+            AutoMapperConfig.RegisterMappings(typeof(TestPost).GetTypeInfo().Assembly);
+        }
+
+        [Fact]
+        public void TestGetPostById()
+        {
+            var dbCtxOptionB = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString());
+            var repository = new EfDeletableEntityRepository<Post>(new ApplicationDbContext(dbCtxOptionB.Options));
+
+            repository.AddAsync(new Post
+            {
+                Title = "Test",
+            })
+            .GetAwaiter().GetResult();
+
+            repository.SaveChangesAsync().GetAwaiter().GetResult();
+
+            var postService = new PostsService(repository);
+            
+            var post = postService.GetById<TestPost>(1);
+
+            Assert.Equal("Test", post.Title);
+        }
+
+        [Fact]
+        public void Test2GetPostById()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString());
+            var repository = new EfDeletableEntityRepository<Post>(new ApplicationDbContext(options.Options));
+            repository.AddAsync(new Post { Title = "test" }).GetAwaiter().GetResult();
+            repository.SaveChangesAsync().GetAwaiter().GetResult();
+            var postService = new PostsService(repository);
+            AutoMapperConfig.RegisterMappings(typeof(MyTestPost).Assembly);
+            var post = postService.GetById<MyTestPost>(1);
+
+            Assert.Equal("test", post.Title);
+        }
+
+        public class MyTestPost : IMapFrom<Post>
+        {
+            public string Title { get; set; }
+        }
+
+
+        public class TestPost : IMapFrom<Post>
+        {
+            public string Title { get; set; }
         }
 
         [Fact(Skip = "Example test. Disabled for CI.")]
