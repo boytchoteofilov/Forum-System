@@ -4,6 +4,7 @@
     using System.Net;
     using System.Reflection;
     using System.Threading.Tasks;
+
     using ForumSystem.Data;
     using ForumSystem.Data.Models;
     using ForumSystem.Data.Repositories;
@@ -41,36 +42,10 @@
             repository.SaveChangesAsync().GetAwaiter().GetResult();
 
             var postService = new PostsService(repository);
-            
+
             var post = postService.GetById<TestPost>(1);
 
             Assert.Equal("Test", post.Title);
-        }
-
-        [Fact]
-        public void Test2GetPostById()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString());
-            var repository = new EfDeletableEntityRepository<Post>(new ApplicationDbContext(options.Options));
-            repository.AddAsync(new Post { Title = "test" }).GetAwaiter().GetResult();
-            repository.SaveChangesAsync().GetAwaiter().GetResult();
-            var postService = new PostsService(repository);
-            AutoMapperConfig.RegisterMappings(typeof(MyTestPost).Assembly);
-            var post = postService.GetById<MyTestPost>(1);
-
-            Assert.Equal("test", post.Title);
-        }
-
-        public class MyTestPost : IMapFrom<Post>
-        {
-            public string Title { get; set; }
-        }
-
-
-        public class TestPost : IMapFrom<Post>
-        {
-            public string Title { get; set; }
         }
 
         [Fact(Skip = "Example test. Disabled for CI.")]
@@ -89,6 +64,11 @@
             var client = this.server.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
             var response = await client.GetAsync("Identity/Account/Manage");
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        }
+
+        public class TestPost : IMapFrom<Post>
+        {
+            public string Title { get; set; }
         }
     }
 }
