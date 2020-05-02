@@ -3,6 +3,53 @@
     this.ViewData["Title"] = Model.Title;
 }
 
+@{
+    void DisplayComments(int? parentId)
+    {
+        var comments = this.Model.Comments.Where(x => x.ParentId == parentId);
+
+        if (!comments.Any())
+        {
+            return;
+        }
+
+        @foreach (var comment in comments)
+        {
+            <div class="container-fluid mt-100">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <div class="media flex-wrap w-100 align-items-center">
+                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
+                                    <div class="media-body ml-3">
+                                        <a href="javascript:void(0)" data-abc="true">@comment.UserUserName</a>
+                                        <div class="text-muted small">13 days ago</div>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(@comment.Id)"><i class="ion ion-md-create"></i> Reply </button>
+                                    </div>
+                                    <div class="text-muted small ml-3">
+                                        <div>Member since <strong>01/1/2019</strong></div>
+                                        <div><strong>134</strong> posts</div>
+                                        <div>Commented on:<time datetime="@comment.CreatedOn.ToString("O")"></time></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                @Html.Raw(comment.SanitizedContent)
+
+                                @{ DisplayComments(comment.Id); }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}
+
 <div class="container-fluid mt-100">
     <div class="row">
         <div class="col-md-12">
@@ -59,45 +106,12 @@
                     </div>
                 </div>
                 <hr />
-                @*TODO: ViewModel in ViewModel*@
-                @foreach (var comment in Model.Comments)
-                {
-                    <div class="container-fluid mt-100">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <div class="media flex-wrap w-100 align-items-center">
-                                            <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
-                                            <div class="media-body ml-3">
-                                                <a href="javascript:void(0)" data-abc="true">@comment.UserUserName</a>
-                                                <div class="text-muted small">13 days ago</div>
-                                            </div>
-                                            <div class="">
-                                                <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(@comment.Id)"><i class="ion ion-md-create"></i> Reply </button>
-                                            </div>
-                                            <div class="text-muted small ml-3">
-                                                <div>Member since <strong>01/1/2019</strong></div>
-                                                <div><strong>134</strong> posts</div>
-                                                <div>Commented on:<time datetime="@comment.CreatedOn.ToString("O")"></time></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-
-                                        @Html.Raw(comment.SanitizedContent)
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                @*TODO:(TOCHECK) ViewModel in ViewModel*@
+                @{ DisplayComments(0); }
             </div>
         </div>
     </div>
 </div>
-
 
 <script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
 <script type="text/javascript">
