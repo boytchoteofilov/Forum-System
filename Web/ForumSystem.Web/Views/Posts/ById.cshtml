@@ -27,7 +27,11 @@
                                         <div class="text-muted small">13 days ago</div>
                                     </div>
                                     <div class="">
-                                        <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(@comment.Id)"><i class="ion ion-md-create"></i> Reply </button>
+                                        @if (this.User.Identity.IsAuthenticated)
+                                        {
+                                            <button type="button" class="btn btn-secondary" onclick="showAddCommentForm(@comment.Id)"><i class="ion ion-md-create"></i> Reply </button>
+                                        }
+
                                     </div>
                                     <div class="text-muted small ml-3">
                                         <div>Member since <strong>01/1/2019</strong></div>
@@ -102,7 +106,10 @@
                     </div>
 
                     <div class="px-4 pt-3">
-                        <button type="button" class="btn btn-primary" onclick="showAddCommentForm(0)"><i class="ion ion-md-create"></i> Comment </button>
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <button type="button" class="btn btn-primary" onclick="showAddCommentForm(0)"><i class="ion ion-md-create"></i> Comment </button>
+                        }
                     </div>
                 </div>
                 <hr />
