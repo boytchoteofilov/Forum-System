@@ -22,6 +22,14 @@
             this.userManager = userManager;
         }
 
+        [HttpGet]
+        public int GetVotes(int id)
+        {
+            var votesCount = this.votesService.GetVotes(id);
+
+            return votesCount;
+        }
+
         // Route api/votes  with post method
         // Request body params -> {"postId":1, "isUpVote:true"}
         // Response -> {"VotesCount = 13"}

@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,19 +28,35 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
+
+                            <div class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                                <a class="nav-link text-dark" href="#resouces">Resources</a>
+                                <a class="nav-link text-dark" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
                         </li>
+                        <li class="nav-item m-3">
+                            <a href="#"><input type="text" name="q" value="" placeholder="Search..." size="70" /></a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
+    <div class="offset">
+        @*offset for the fixed top navigation*@
+    </div>
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
+
             @this.RenderBody()
+
         </main>
     </div>
 

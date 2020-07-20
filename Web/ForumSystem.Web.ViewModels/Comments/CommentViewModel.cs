@@ -1,14 +1,15 @@
-﻿using ForumSystem.Data.Models;
-using ForumSystem.Services.Mapping;
-using Ganss.XSS;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-
-namespace ForumSystem.Web.ViewModels.Comments
+﻿namespace ForumSystem.Web.ViewModels.Comments
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Text;
+    using System.Text.RegularExpressions;
+
+    using ForumSystem.Data.Models;
+    using ForumSystem.Services.Mapping;
+    using Ganss.XSS;
+
     public class CommentViewModel : IMapFrom<Comment>
     {
         public int Id { get; set; }

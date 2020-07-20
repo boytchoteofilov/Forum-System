@@ -1,6 +1,7 @@
 ﻿namespace ForumSystem.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using ForumSystem.Data.Common.Models;
 
@@ -17,6 +18,7 @@
 
         public string Description { get; set; }
 
+        [Display(Name ="Image")]
         public string ImageUrl { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }

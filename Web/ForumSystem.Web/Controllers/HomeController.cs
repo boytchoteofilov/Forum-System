@@ -2,9 +2,11 @@
 {
     using System.Diagnostics;
 
+    using ForumSystem.Data.Models;
     using ForumSystem.Services.Data;
     using ForumSystem.Web.ViewModels;
     using ForumSystem.Web.ViewModels.Home;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
@@ -82,11 +84,6 @@
             viewModel.Categories = ceategories;
 
             return this.View(viewModel);
-        }
-
-        public IActionResult Privacy()
-        {
-            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

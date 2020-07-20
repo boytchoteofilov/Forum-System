@@ -39,6 +39,5 @@
 
             Assert.Contains("<h1", responseAsString);
         }
-
     }
 }

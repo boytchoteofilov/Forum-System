@@ -1,9 +1,10 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using System;
+
     using ForumSystem.Services.Data;
     using ForumSystem.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
-    using System;
 
     public class CategoriesController : Controller
     {

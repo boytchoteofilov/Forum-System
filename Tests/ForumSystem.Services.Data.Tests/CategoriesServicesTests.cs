@@ -24,7 +24,6 @@
         [Fact]
         public void GetByName_Should_()
         {
-
         }
 
         [Fact]
@@ -55,6 +54,7 @@
         public class MyCategory : IMapFrom<Category>
         {
             public int Id { get; set; }
+
             public string Name { get; set; }
         }
     }
