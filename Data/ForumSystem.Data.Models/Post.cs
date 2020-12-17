@@ -17,6 +17,7 @@
 
         public string Content { get; set; }
 
+        // Relational properties
         [Required]
         public string UserId { get; set; }
 

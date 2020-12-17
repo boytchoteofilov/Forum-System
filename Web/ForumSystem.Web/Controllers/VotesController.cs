@@ -31,7 +31,7 @@
         }
 
         // Route api/votes  with post method
-        // Request body params -> {"postId":1, "isUpVote:true"}
+        // Request body params or how the request will look like -> {"postId":1, "isUpVote:true"}
         // Response -> {"VotesCount = 13"}
         [Authorize]
         [HttpPost]
